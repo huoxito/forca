@@ -13,48 +13,22 @@
 
 // Vale a pena usar apenas Js puro? Sem jQuery?
 
-// ...
-
-var obj = ['carro', 'flamengo', 'esternoclidómastódeo'];
-
-function setPalavra(p){
-
-  switch(p){
-    case 1:
-      this.arr = ['pinkfloyd', 'radiohead'];
-      break;
-    case 2:
-      this.arr = ['porrada','camareira'];
-      break;
-    default:
-      this.arr = ['carro', 'flamengo', 'esternoclidomastódeo','exemple','rodrigo',
-                      'carlos','bonequinho','cerveja','sexo','drogas','futebol','alfabeto',
-                      'camarada','cadeira','mesada','começo','camareira'];
-  }
-
-  this.index = Math.floor(Math.random() * this.arr.length);
-  this.palavra = this.arr[this.index];
-}
-
-var nivel = new setPalavra(1);
 
 /* Variaveis globais */
 
-var tamanho_palavra = nivel.palavra.length;
+// Obj com os dados sobre a palavra
+var configs = new Configs(1);
 
 var marcador = 0;
 
-// TODO Se a palavra é numero essa lógica não rola
-// O número de chances deve ser sempre limitado
-// a talvez apenas metade de letras do número do alfabeto
-var chances = tamanho_palavra * 2;
+var chances = configs.chances;
 
-var marcador_pra_chances = 0;
+var achou = false;
 
 $(document).ready(function(){
 
   // Foco na input pra letra
-  $('#letra').focus();
+  document.getElementById('letra').focus();
 
   // Informo o numero de chances
   $('#chances').html(chances);
@@ -62,41 +36,68 @@ $(document).ready(function(){
   // É executada ao submeter o formulário
   $('#form').submit(function(){
     
-    // Pega o valor do input com id letra
+    // Pega a letra inseridapelo usuário
     var letra = $('#letra').val();
 
     // procuro a letra digitada na palavra
-    for(var i = 0; i < tamanho_palavra; i++){
-      if(palavra[i] == letra){
+    for(var i = 0; i < configs.tamanho; i++){
+      if(configs.palavra[i] == letra){
         var conteudo = $('#letra_' + i).html();
         if(conteudo == ' _ '){
           $('#letra_' + i).html(letra);
           marcador++;
+          achou = true;
         }
       }
+    }
+
+    // Diminuo o numero de chances;
+    if(!achou){
+      chances--;
+      $('#chances').html(chances);
     }
     
     // Limpo o valor do input 
     $('#letra').val('');
-
-    // Diminuo o numero de chances;
-    chances--;
-    $('#chances').html(chances);
      
     // Se usuario ganha ou perde
-    if(marcador == tamanho_palavra){
-      alert('aaaaaaaah moleque');
+    if(marcador == configs.tamanho){
+      $('#frase_chance').html('YOU WIN');
     } else if (chances == 0){
-      $('#frase_chance').html('Perdeu playboy');
+      $('#frase_chance').html('YOU LOSE');
       $('form').remove();
     }
-
+    
+    achou = false;
     return false;
   });
 
   // Inicializo espaço com as palavras
-  cria_espacos(palavra);
+  cria_espacos(configs.palavra);
 });
+
+function Configs(p){
+
+  switch(p){
+    case 1: //easy
+      this.arr = ['raiz', 'radiohead'];
+      this.chances = 8;
+      break;
+    case 2: //medium
+      this.arr = ['porrada','camareira'];
+      this.chances = 5;
+      break;
+    default: //hard
+      this.arr = ['carro', 'flamengo', 'esternoclidomastódeo','exemple','rodrigo',
+                  'carlos','bonequinho','cerveja','sexo','drogas','futebol','alfabeto',
+                  'camarada','cadeira','mesada','começo','camareira'];
+      this.chances = 3;
+  }
+
+  this.index = Math.floor(Math.random() * this.arr.length);
+  this.palavra = this.arr[this.index];
+  this.tamanho = this.palavra.length
+}
 
 function cria_espacos(palavra){
   for(var i = 0; i < palavra.length; i++){
