@@ -16,21 +16,37 @@
 
   <h1>FORCA</h1>
 
-  <!-- Recebe espaços com as palavras -->
-  <p id="palavra"> </p>
+  <form> <input type=submit value=Recomeçar /> </form>
+  <div id="niveis">
+    <p id="nivelinfo">Selecione o nivel de dificuldade</p>
+    <input type=button class=nivel value="facil" /> 
+    <input type=button class=nivel value="medio" /> 
+    <input type=button class=nivel value="dificil" />
+  </div>
 
-  <!-- Form de onde usuário irá colocar a palavra -->
-  <form id="form">
-    <input type="text" maxlength="1" name="letra" id="letra" />
-    <input type="submit" value="Enviar" />
-  </form>  
+  <div id=container>
 
-  <p id="frase_chance">
-    Você tem 
-      <!-- Recebe número de chances -->
-      <span id="chances"></span> 
-    chances.
-  </p>
+    <div id=content>
+      <!-- Recebe espaços com as palavras -->
+      <p id="palavra"> </p>
+
+      <!-- Form de onde usuário irá colocar a palavra -->
+      <form id="form">
+
+        <p id="frase_chance">
+          Você tem 
+            <!-- Recebe número de chances -->
+            <span id="chances"></span> 
+          chances.
+        </p>
+
+        <p>
+          Insira a letra e pressione ENTER
+          <input type="text" maxlength="1" name="letra" id="letra" />
+        </p>
+      </form>  
+    </div>
+  </div>
 
 </body>
 </html>

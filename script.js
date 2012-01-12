@@ -17,21 +17,74 @@
 /* Variaveis globais */
 
 // Obj com os dados sobre a palavra
-var configs = new Configs(1);
 
 var marcador = 0;
 
-var chances = configs.chances;
-
-var achou = false;
+//var chances = configs.chances;
 
 $(document).ready(function(){
 
-  // Foco na input pra letra
-  document.getElementById('letra').focus();
+  $('#form').hide();
 
-  // Informo o numero de chances
-  $('#chances').html(chances);
+  $('.nivel').click(function(){
+
+    var nivel = $(this).val();
+
+    var configs = new Configs(nivel);
+
+    criaEspacos(configs.tamanho);
+
+    $('.nivel').attr('disabled','disabled');
+    $('#nivelinfo').html('Nivel ' + nivel);
+
+    $('#form').show();
+
+    // Foco na input pra letra
+    document.getElementById('letra').focus();
+
+    // Informo o numero de chances
+    $('#chances').html(configs.chances);
+    logica(configs);
+
+    return false;
+  });
+
+});
+
+function Configs(p){
+
+  switch(p){
+    case 'facil': //easy
+      this.arr = ['raiz', 'radiohead'];
+      this.chances = 8;
+      break;
+    case 'medio': //medium
+      this.arr = ['porrada','camareira'];
+      this.chances = 5;
+      break;
+    default: //hard
+      this.arr = ['carro', 'flamengo', 'esternoclidomastódeo','exemple','rodrigo',
+                  'carlos','bonequinho','cerveja','sexo','drogas','futebol','alfabeto',
+                  'camarada','cadeira','mesada','começo','camareira'];
+      this.chances = 3;
+  }
+
+  this.index = Math.floor(Math.random() * this.arr.length);
+  this.palavra = this.arr[this.index];
+  this.tamanho = this.palavra.length
+}
+
+function criaEspacos(tamanho){
+  var markup = '';
+  for(var i = 0; i < tamanho; i++){
+    markup += '<span id="letra_' + i + '"> _ </span>';
+  }
+  $('#palavra').append(markup); 
+}
+
+function logica(configs){
+
+  var achou = false;
 
   // É executada ao submeter o formulário
   $('#form').submit(function(){
@@ -53,8 +106,8 @@ $(document).ready(function(){
 
     // Diminuo o numero de chances;
     if(!achou){
-      chances--;
-      $('#chances').html(chances);
+      configs.chances--;
+      $('#chances').html(configs.chances);
     }
     
     // Limpo o valor do input 
@@ -63,45 +116,12 @@ $(document).ready(function(){
     // Se usuario ganha ou perde
     if(marcador == configs.tamanho){
       $('#frase_chance').html('YOU WIN');
-    } else if (chances == 0){
+    } else if (configs.chances == 0){
       $('#frase_chance').html('YOU LOSE');
-      $('form').remove();
+      $("#form :input").attr("disabled", true);
     }
     
     achou = false;
     return false;
   });
-
-  // Inicializo espaço com as palavras
-  cria_espacos(configs.palavra);
-});
-
-function Configs(p){
-
-  switch(p){
-    case 1: //easy
-      this.arr = ['raiz', 'radiohead'];
-      this.chances = 8;
-      break;
-    case 2: //medium
-      this.arr = ['porrada','camareira'];
-      this.chances = 5;
-      break;
-    default: //hard
-      this.arr = ['carro', 'flamengo', 'esternoclidomastódeo','exemple','rodrigo',
-                  'carlos','bonequinho','cerveja','sexo','drogas','futebol','alfabeto',
-                  'camarada','cadeira','mesada','começo','camareira'];
-      this.chances = 3;
-  }
-
-  this.index = Math.floor(Math.random() * this.arr.length);
-  this.palavra = this.arr[this.index];
-  this.tamanho = this.palavra.length
-}
-
-function cria_espacos(palavra){
-  for(var i = 0; i < palavra.length; i++){
-    var markup = '<span id="letra_' + i + '"> _ </span>';
-    $('#palavra').append(markup); 
-  }
 }
