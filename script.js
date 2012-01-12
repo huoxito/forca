@@ -8,13 +8,8 @@
 
 // E aí a forca começa
 
-// Tocar Cannibal Corpse conforme o número de chances
-// for diminuindo? Começar com uma música bem fácil?
-
 // Mostrar algumas imagens que mudam de acordo com a
 // queda no número de chances do usuário
-
-// Mostrar zumbis?
 
 // Vale a pena usar apenas Js puro? Sem jQuery?
 
@@ -22,10 +17,30 @@
 
 var obj = ['carro', 'flamengo', 'esternoclidómastódeo'];
 
-// Variaveis globais
-var palavra = obj[2];
+function setPalavra(p){
 
-var tamanho_palavra = palavra.length;
+  switch(p){
+    case 1:
+      this.arr = ['pinkfloyd', 'radiohead'];
+      break;
+    case 2:
+      this.arr = ['porrada','camareira'];
+      break;
+    default:
+      this.arr = ['carro', 'flamengo', 'esternoclidomastódeo','exemple','rodrigo',
+                      'carlos','bonequinho','cerveja','sexo','drogas','futebol','alfabeto',
+                      'camarada','cadeira','mesada','começo','camareira'];
+  }
+
+  this.index = Math.floor(Math.random() * this.arr.length);
+  this.palavra = this.arr[this.index];
+}
+
+var nivel = new setPalavra(1);
+
+/* Variaveis globais */
+
+var tamanho_palavra = nivel.palavra.length;
 
 var marcador = 0;
 
