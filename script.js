@@ -1,27 +1,3 @@
-// TODO Monta objeto (ou array?) com várias palavras
-// Organizá-las de acordo com nível de dificuldade
-
-// TODO Modularizar?
-
-// Usuário escolhe nivel e uma palavra é escolhida
-// pra ele randomicamente
-
-// E aí a forca começa
-
-// Mostrar algumas imagens que mudam de acordo com a
-// queda no número de chances do usuário
-
-// Vale a pena usar apenas Js puro? Sem jQuery?
-
-
-/* Variaveis globais */
-
-// Obj com os dados sobre a palavra
-
-var marcador = 0;
-
-//var chances = configs.chances;
-
 $(document).ready(function(){
 
   $('#form').hide();
@@ -36,6 +12,8 @@ $(document).ready(function(){
 
     $('.nivel').attr('disabled','disabled');
     $('#nivelinfo').html('Nivel ' + nivel);
+
+    loadImages();
 
     $('#form').show();
 
@@ -85,6 +63,7 @@ function criaEspacos(tamanho){
 function logica(configs){
 
   var achou = false;
+  var marcador = 0;
 
   // É executada ao submeter o formulário
   $('#form').submit(function(){
@@ -106,6 +85,7 @@ function logica(configs){
 
     // Diminuo o numero de chances;
     if(!achou){
+      setImage(configs.chances);
       configs.chances--;
       $('#chances').html(configs.chances);
     }
@@ -124,4 +104,16 @@ function logica(configs){
     achou = false;
     return false;
   });
+}
+
+var images = [];
+function loadImages(){
+  for(var i = 1; i < 10; i++){
+    var image = new Image();
+    images[i] =  image.src  = 'images/forca_' + i + '.jpg';
+  }
+}
+
+function setImage(chances){
+  $("#image").attr("src", images[chances-1]);
 }
