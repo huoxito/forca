@@ -8,7 +8,7 @@ $(document).ready(function(){
 
     var configs = new Configs(nivel);
 
-    criaEspacos(configs.tamanho);
+    setPalavra(configs);
 
     $('.nivel').attr('disabled','disabled');
     $('#nivelinfo').html('Nivel ' + nivel);
@@ -33,31 +33,31 @@ function Configs(p){
 
   switch(p){
     case 'facil': //easy
-      this.arr = ['raiz', 'radiohead'];
+      this.arr = [['raiz', 'parte de uma planta'], ['radiohead', 'uma banda inglesa']];
       this.chances = 8;
       break;
     case 'medio': //medium
-      this.arr = ['porrada','camareira'];
+      this.arr = [['porrada', 'Uma agressão'], ['Zico', 'Jogador de futebol']];
       this.chances = 5;
       break;
     default: //hard
-      this.arr = ['carro', 'flamengo', 'esternoclidomastódeo','exemple','rodrigo',
-                  'carlos','bonequinho','cerveja','sexo','drogas','futebol','alfabeto',
-                  'camarada','cadeira','mesada','começo','camareira'];
+      this.arr = [['carro', 'Um automóvel'], ['flamengo', 'Time de futebol'], ['esternoclidomastódeo', 'Musculo do corpo humano']];
       this.chances = 3;
   }
 
   this.index = Math.floor(Math.random() * this.arr.length);
-  this.palavra = this.arr[this.index];
+  this.palavra = this.arr[this.index][0];
+  this.dica = this.arr[this.index][1];
   this.tamanho = this.palavra.length
 }
 
-function criaEspacos(tamanho){
+function setPalavra(configs){
   var markup = '';
-  for(var i = 0; i < tamanho; i++){
+  for(var i = 0; i < configs.tamanho; i++){
     markup += '<span id="letra_' + i + '"> _ </span>';
   }
   $('#palavra').append(markup); 
+  $('#dica').append(configs.dica); 
 }
 
 function logica(configs){

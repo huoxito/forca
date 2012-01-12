@@ -8,5 +8,7 @@ p { margin: 10px; }
 #content, img { float: left }
 .niveis { float: left; }
 
+
+#dica { font-size: 14px; }
 #chances { font-weight: bold; font-size: 14px; }
 
