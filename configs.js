@@ -1,3 +1,5 @@
+// seta palavra, dica, tamanho da palavra, index da palavra no array
+//
 function Configs(p){
 
   //switch das palavras
@@ -19,7 +21,7 @@ function Configs(p){
           ['perfume','LÍQUIDO FEITO DE FLORES'],
           ['carneiro','ANIMAL QUE SIMBOLIZA SACRIFÍO FEITO POR DEUS '],
           ['vinho','BEBIDA FEITA DE UVA'],
-          ['fultebol','ESPORTE JOGADO EM TODO O MUNDO'],
+          ['futebol','ESPORTE JOGADO EM TODO O MUNDO'],
           ['madrugada','entre a noite e o dia']
         ];
         this.chances = 8;

@@ -1,6 +1,7 @@
 $(document).ready(function(){
 
   $('#form').hide();
+  loadImages();
 
   $('.nivel').click(function(){
 
@@ -10,10 +11,9 @@ $(document).ready(function(){
     setPalavra(configs);
     $('h1').after('<form id=recomecar> <button type=submit class="btn">Recomeçar</button> </form>');
 
+    // desabilito botoes de nivel e add class no escolhido
     $('.nivel').attr('disabled','disabled');
     $(this).addClass('info');
-
-    loadImages();
 
     $('#form').show();
 
@@ -29,6 +29,9 @@ $(document).ready(function(){
 
 });
 
+// preeche element com espacos de acordo com numero de chars na palavra
+// também exibe a dica
+//
 function setPalavra(configs){
   var markup = '';
   for(var i = 0; i < configs.tamanho; i++){
@@ -38,16 +41,20 @@ function setPalavra(configs){
   $('#dica').append(configs.dica); 
 }
 
+// onde a coisa acontece
+//
 function logica(configs){
 
+  // se letra inserida foi encontrada ou não
   var achou = false;
+
+  // marca quantas letras foram encontradas na palavra
   var marcador = 0;
 
-  // É executada ao submeter o formulário
   $('#form').submit(function(){
     
-    // Pega a letra inseridapelo usuário
-    var letra = $('#letra').val().toLowerCase();
+    // Pega a letra inserida pelo usuário
+    var letra = $('#letra').val();
 
     // procuro a letra digitada na palavra
     for(var i = 0; i < configs.tamanho; i++){
@@ -91,11 +98,17 @@ function logica(configs){
     $('#letra').val('');
     
     achou = false;
+
+    // nao request pro servidor, prevent default
     return false;
   });
 }
 
+// global var
 var images = [];
+
+// carrega images no background pra depois serem inseridas
+//
 function loadImages(){
   for(var i = 1; i < 10; i++){
     var image = new Image();
@@ -108,6 +121,8 @@ function loadImages(){
   lose.src  = 'images/lose.png';
 }
 
+// muda imagem dependendo das chances ou situação no jogo
+//
 function setImage(chances){
   switch(chances){
     case 'win': 
@@ -121,6 +136,9 @@ function setImage(chances){
   }
 }
 
+// trata palavras acentuadas pra que usuario nao precise
+// inserir palavras com acentos
+//
 function accentProof(l){
   var r=l.toLowerCase();
   r = r.replace(new RegExp("\\s", 'g'),"");
