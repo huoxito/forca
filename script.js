@@ -56,6 +56,11 @@ function logica(configs){
     // Pega a letra inserida pelo usuário
     var letra = $('#letra').val();
 
+    // usuario deve submeter um caractere
+    if(!letra){
+      return false;
+    }
+
     // procuro a letra digitada na palavra
     for(var i = 0; i < configs.tamanho; i++){
       if(accentProof(configs.palavra[i]) == accentProof(letra)){
