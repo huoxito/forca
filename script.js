@@ -172,7 +172,7 @@ var images = [];
 function loadImages(){
   for(var i = 1; i < 10; i++){
     var image = new Image();
-    images[i] =  image.src  = 'images/forca_' + i + '.jpg';
+    images[i] =  image.src  = 'images/forca_' + i + '.png';
   }
 }
 
