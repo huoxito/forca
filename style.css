@@ -1,14 +1,22 @@
 
-#palavra { 
-  font-size: 500%;
-}
 
 #form { clear: both; }
 p { margin: 10px; }
-#content, img { float: left }
-.niveis { float: left; }
+.niveis {  overflow: auto; }
 
 
 #dica { font-size: 14px; }
-#chances { font-weight: bold; font-size: 14px; }
 
+#chances {  }
+
+#nivelinfo { font-size: 14px; width: 400px; float: left; }
+
+#dicainput { font-size: 14px; }
+
+#niveis { padding: 40px 0 0; }
+
+.content { overflow: auto; padding-top: 40px;}
+
+#wrapper-image, #forca-form { float: left; }
+#wrapper-image{ margin-right: 10px; }
+#palavra { font-size: 300%; height: 90px; }

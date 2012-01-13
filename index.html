@@ -11,43 +11,53 @@
   <script type="text/javascript" src="script.js"></script>
 
   <link rel="stylesheet" href="style.css" /> 
+  <link rel="stylesheet" href="bootstrap.css" /> 
 </head>
 <body>
 
-  <h1>FORCA</h1>
+  <div class=container>
 
-  <form> <input type=submit value=Recomeçar /> </form>
-  <div id="niveis">
-    <p id="nivelinfo">Selecione o nivel de dificuldade</p>
-    <input type=button class=nivel value="facil" /> 
-    <input type=button class=nivel value="medio" /> 
-    <input type=button class=nivel value="dificil" />
-  </div>
+    <div class=hero-unit>
 
-  <div id=container>
+      <h1>FORCA</h1>
 
-    <img id="image" src="images/forca_0.jpg" width="300" height="220" />
+      <div id="niveis">
+        <p id=nivelinfo>Selecione o nivel de dificuldade: </p>
+        <input type=button class=nivel value="facil" /> 
+        <input type=button class=nivel value="medio" /> 
+        <input type=button class=nivel value="dificil" />
+      </div>
 
-    <div id=content>
-      <p id="dica"> </p>
-      <!-- Recebe espaços com as palavras -->
-      <p id="palavra"> </p>
+      <div class=content>
 
-      <!-- Form de onde usuário irá colocar a palavra -->
-      <form id="form">
+        <div id=wrapper-image>
+          <img id="image" src="images/forca_0.jpg" width="300" height="220" />
+        </div>
 
-        <p id="frase_chance">
-          Você tem 
-            <!-- Recebe número de chances -->
-            <span id="chances"></span> 
-          chances.
-        </p>
+        <div id=forca-form>
 
-        <p>
-          Insira a letra e pressione ENTER
-          <input type="text" maxlength="1" name="letra" id="letra" />
-        </p>
-      </form>  
+          <p id="dica"> </p>
+          <!-- Recebe espaços com as palavras -->
+          <p id="palavra"> </p>
+          <!-- Form de onde usuário irá colocar a palavra -->
+          <form id="form">
+
+            <p id="frase_chance">
+              Você tem 
+                <!-- Recebe número de chances -->
+                <span id="chances"></span> 
+              chances.
+            </p>
+
+            <p id=dicainput>
+              Insira a letra e pressione ENTER
+              <input type="text" maxlength="1" style="width: 30px;" name="letra" id="letra" />
+            </p>
+          </form>  
+        </div>
+
+      </div>
+
     </div>
   </div>
 
