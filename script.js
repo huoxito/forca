@@ -75,7 +75,12 @@ function logica(configs){
     // Diminuo o numero de chances;
     if(!achou){
       configs.chances--;
-      $('#chances').html(configs.chances);
+      if(configs.chances == 0){
+        $('#frase_chance').html('Erre mais não brother ...');
+        $('#frase_chance').css('color', 'red');
+      }else{
+        $('#chances').html(configs.chances);
+      }
       setImage(configs.chances);
     }
     
