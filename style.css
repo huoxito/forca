@@ -9,7 +9,7 @@ p { margin: 10px; }
 
 #chances {  }
 
-#nivelinfo { font-size: 14px; width: 400px; float: left; }
+#nivelinfo { font-size: 22px; width: 400px; float: left; }
 
 #dicainput { font-size: 14px; }
 
@@ -19,6 +19,6 @@ p { margin: 10px; }
 
 #wrapper-image, #forca-form { float: left; }
 #wrapper-image{ margin-right: 10px; width: 300px; }
-#palavra { font-size: 200%; height: 90px; }
+#palavra { font-size: 300%; height: 90px; overflow: auto; }
 
 #forca-form { width: 550px; }

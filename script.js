@@ -11,7 +11,7 @@ $(document).ready(function(){
     setPalavra(configs);
 
     $('.nivel').attr('disabled','disabled');
-    $('#nivelinfo').html('Nivel ' + nivel);
+    $(this).addClass('info');
 
     loadImages();
 
