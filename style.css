@@ -5,6 +5,8 @@ p { margin: 10px; }
 .niveis {  overflow: auto; }
 
 
+#recomecar { margin-top: -43px; margin-left: 450px; }
+
 #dica { font-size: 14px; padding-bottom: 30px; }
 
 #chances {  }

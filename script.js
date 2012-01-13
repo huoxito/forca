@@ -9,6 +9,7 @@ $(document).ready(function(){
     var configs = new Configs(nivel);
 
     setPalavra(configs);
+    $('h1').after('<form id=recomecar> <button type=submit class="btn">Recomeçar</button> </form>');
 
     $('.nivel').attr('disabled','disabled');
     $(this).addClass('info');
