@@ -131,7 +131,7 @@ function logica(configs){
   $('#form').submit(function(){
     
     // Pega a letra inseridapelo usuário
-    var letra = $('#letra').val();
+    var letra = $('#letra').val().toLowerCase();
 
     // procuro a letra digitada na palavra
     for(var i = 0; i < configs.tamanho; i++){
