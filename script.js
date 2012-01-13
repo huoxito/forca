@@ -4,7 +4,7 @@ $(document).ready(function(){
 
   $('.nivel').click(function(){
 
-    var nivel = $(this).val();
+    var nivel = $(this).attr('value');
 
     var configs = new Configs(nivel);
 
