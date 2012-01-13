@@ -145,23 +145,27 @@ function logica(configs){
       }
     }
 
+    // Se usuario ganha ou perde
+    if(marcador == configs.tamanho || configs.chances == 0){
+      if(marcador == configs.tamanho){
+        setImage('win');
+      } else if (configs.chances == 0){
+        setImage('lose');
+      }
+      $("#form :input").attr("disabled", true);
+      $('#frase_chance').html('');
+    }
+
     // Diminuo o numero de chances;
     if(!achou){
-      setImage(configs.chances);
       configs.chances--;
       $('#chances').html(configs.chances);
+      setImage(configs.chances);
     }
     
     // Limpo o valor do input 
     $('#letra').val('');
      
-    // Se usuario ganha ou perde
-    if(marcador == configs.tamanho){
-      $('#frase_chance').html('YOU WIN');
-    } else if (configs.chances == 0){
-      $('#frase_chance').html('YOU LOSE');
-      $("#form :input").attr("disabled", true);
-    }
     
     achou = false;
     return false;
@@ -172,10 +176,24 @@ var images = [];
 function loadImages(){
   for(var i = 1; i < 10; i++){
     var image = new Image();
-    images[i] =  image.src  = 'images/forca_' + i + '.png';
+    images[i] =  image.src  = 'images/forca_' + i + '_.png';
   }
+  var win = new Image();
+  win.src  = 'images/win.png';
+
+  var lose = new Image();
+  lose.src  = 'images/lose.png';
 }
 
 function setImage(chances){
-  $("#image").attr("src", images[chances-1]);
+  switch(chances){
+    case 'win': 
+      $("#image").attr("src", 'images/win.png');
+      break;
+    case 'lose':
+      $("#image").attr("src", 'images/lose.png');
+      break;
+    default:
+      $("#image").attr("src", images[chances-1]);
+  }
 }
