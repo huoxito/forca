@@ -5,7 +5,7 @@ p { margin: 10px; }
 .niveis {  overflow: auto; }
 
 
-#dica { font-size: 14px; }
+#dica { font-size: 14px; padding-bottom: 30px; }
 
 #chances {  }
 
@@ -18,5 +18,7 @@ p { margin: 10px; }
 .content { overflow: auto; padding-top: 40px;}
 
 #wrapper-image, #forca-form { float: left; }
-#wrapper-image{ margin-right: 10px; }
-#palavra { font-size: 300%; height: 90px; }
+#wrapper-image{ margin-right: 10px; width: 300px; }
+#palavra { font-size: 200%; height: 90px; }
+
+#forca-form { width: 550px; }
