@@ -51,10 +51,10 @@ function logica(configs){
 
     // procuro a letra digitada na palavra
     for(var i = 0; i < configs.tamanho; i++){
-      if(configs.palavra[i] == letra){
+      if(accentProof(configs.palavra[i]) == accentProof(letra)){
         var conteudo = $('#letra_' + i).html();
         if(conteudo == ' _ '){
-          $('#letra_' + i).html(letra);
+          $('#letra_' + i).html(configs.palavra[i]);
           marcador++;
           achou = true;
         }
@@ -120,3 +120,19 @@ function setImage(chances){
       $("#image").attr("src", images[chances-1]);
   }
 }
+
+function accentProof(l){
+  var r=l.toLowerCase();
+  r = r.replace(new RegExp("\\s", 'g'),"");
+  r = r.replace(new RegExp("[àáâãäå]", 'g'),"a");
+  r = r.replace(new RegExp("ç", 'g'),"c");
+  r = r.replace(new RegExp("[èéêë]", 'g'),"e");
+  r = r.replace(new RegExp("[ìíîï]", 'g'),"i");
+  r = r.replace(new RegExp("ñ", 'g'),"n");                            
+  r = r.replace(new RegExp("[òóôõö]", 'g'),"o");
+  r = r.replace(new RegExp("[ùúûü]", 'g'),"u");
+  r = r.replace(new RegExp("\\W", 'g'),"");
+  return r;
+}
+
+
