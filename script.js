@@ -61,13 +61,9 @@ function logica(configs){
       }
     }
 
-    // Se usuario ganha ou perde
-    if(marcador == configs.tamanho || configs.chances == 0){
-      if(marcador == configs.tamanho){
-        setImage('win');
-      } else if (configs.chances == 0){
-        setImage('lose');
-      }
+    // Se usuario ganha
+    if(marcador == configs.tamanho){
+      setImage('win');
       $("#form :input").attr("disabled", true);
       $('#frase_chance').html('');
     }
@@ -83,10 +79,16 @@ function logica(configs){
       }
       setImage(configs.chances);
     }
+
+    // Se usuario perde
+    if(configs.chances < 0){
+      setImage('lose');
+      $("#form :input").attr("disabled", true);
+      $('#frase_chance').html('');
+    }
     
     // Limpo o valor do input 
     $('#letra').val('');
-     
     
     achou = false;
     return false;
